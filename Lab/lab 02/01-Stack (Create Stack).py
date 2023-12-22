@@ -48,6 +48,7 @@ class ArrayStack:
     def print_stack(self):
         """print stack"""
         print(self.data)
+
 STACK_ = ArrayStack()
 
 STACK_.push("100")
