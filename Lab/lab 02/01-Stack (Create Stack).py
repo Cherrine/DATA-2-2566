@@ -1,4 +1,4 @@
-"""Lab 02.01 – Stack (Create Stack)"""
+"""Lab 02.01 - Stack (Create Stack)"""
 class ArrayStack:
     """stack"""
     def __init__(self):
@@ -34,7 +34,11 @@ class ArrayStack:
     
     def print_stack(self):
         """print stack"""
-        print(self.stack)
+        formatted_stack = ', '.join(f"'{i}'" if isinstance(i, str) else str(i) for i in self.stack)
+        print(f"[{formatted_stack}]")
+
+
+
 
 STACK_ = ArrayStack()
 
