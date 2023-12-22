@@ -2,44 +2,52 @@
 class ArrayStack:
     """stack"""
     def __init__(self):
-        self.stack = []
-    
-    def push(self, item):
-        """push item"""
-        self.stack.append(item)
-    
+        self.size = 0
+        self.data = []
+
+    def push(self, input_data):
+        """Stack"""
+        try:
+            if input_data.isdigit():
+                input_data = int(input_data)
+            elif input_data.replace(".", "", 1).isdigit():
+                input_data = float(input_data)
+        except (TypeError, ValueError, ArithmeticError, AttributeError):
+            pass
+        finally:
+            self.data.append(input_data)
+            self.size += 1
+
     def pop(self):
         """pop item"""
         if not self.is_empty():
-            return self.stack.pop()
+            return self.data.pop()
         else:
             print("Underflow: Cannot pop data from an empty list")
             return None
-    
+
+    def is_empty(self):
+        """if the stack is empty"""
+        if self.data == []:
+            return True
+        else:
+            return False
+
     def get_stack_top(self):
         """get stack stop"""
         if not self.is_empty():
-            return self.stack[-1]
+            return self.data[-1]
         else:
             print("Underflow: Cannot get stack top from an empty list")
             return None
-    
-    def is_empty(self):
-        """if the stack is empty"""
-        return len(self.stack) == 0
-    
+
     def get_size(self):
         """stack size"""
-        return len(self.stack)
-    
+        return len(self.data)
+
     def print_stack(self):
         """print stack"""
-        formatted_stack = ', '.join(f"'{i}'" if isinstance(i, str) else str(i) for i in self.stack)
-        print(f"[{formatted_stack}]")
-
-
-
-
+        print(self.data)
 STACK_ = ArrayStack()
 
 STACK_.push("100")
@@ -59,7 +67,7 @@ print(STACK_.get_size())
 
 while not STACK_.is_empty():
     print(STACK_.pop())
-    
+
 print()
 print(STACK_.pop())
 print(STACK_.get_stack_top())
